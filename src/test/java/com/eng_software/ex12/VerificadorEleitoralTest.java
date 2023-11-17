@@ -70,6 +70,18 @@ public class VerificadorEleitoralTest {
         assertEquals("voto facultativo",resposta );
     }
 
+    @Test
+    public void MuitoNovo () throws Exception 
+    {
+        CartorioEleitoral CartMock = mock(CartorioEleitoral.class);
+        VerificadorEleitora verEleitoral = new VerificadorEleitora(CartMock);
+        
+        when(CartMock.verificar("45678912302")).thenReturn("OK");
+
+        String resposta = verEleitoral.consultarSituacao(15, "45678912302");
+        assertEquals("nao pode votar",resposta );
+    }
+
 
 }
 
